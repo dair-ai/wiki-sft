@@ -1,12 +1,12 @@
 ---
-description: Run the Fireworks Pilot Agent to fine-tune a model end-to-end
-argument-hint: "What would you like the Pilot Agent to do?"
+description: Run the Fireworks Agent to fine-tune a model end-to-end
+argument-hint: "What would you like the Fireworks Agent to do?"
 allowed-tools: Bash(source:*), Bash(firectl session create:*), Bash(firectl session get:*), Bash(firectl session events:*), Bash(firectl session list:*)
 ---
 
-# Pilot Agent
+# Fireworks Agent
 
-You are helping a user run the Fireworks Pilot Agent (`firectl session`), which handles data prep, model selection, hyperparameter sweeps, evals, and deployment automatically.
+You are helping a user run the Fireworks Agent (`firectl session`), which handles data prep, model selection, hyperparameter sweeps, evals, and deployment automatically.
 
 User input: $ARGUMENTS
 
@@ -27,7 +27,7 @@ source .env && [ -n "$PI_API_KEY" ] && echo "PI_API_KEY is set" || echo "PI_API_
 - If set and non-empty, proceed using `--api-key $PI_API_KEY` on every `firectl` command.
 - If empty or unset, **stop immediately** and tell the user:
 
-  > A Fireworks service account API key is required to run the Pilot Agent.
+  > A Fireworks service account API key is required to run the Fireworks Agent.
   >
   > **To set one up:**
   > 1. Have an admin create a key for your service account:
@@ -48,9 +48,9 @@ If `$ARGUMENTS` is already provided, skip this phase entirely and go straight to
 
 If `$ARGUMENTS` is empty, ask the user one question:
 
-> "What would you like the Pilot Agent to do?"
+> "What would you like the Fireworks Agent to do?"
 
-Use their response as the instruction in Phase 2. Do not ask follow-up questions about dataset, model, or anything else — pass the response as-is and let the Pilot Agent handle the rest.
+Use their response as the instruction in Phase 2. Do not ask follow-up questions about dataset, model, or anything else — pass the response as-is and let the Fireworks Agent handle the rest.
 
 ---
 
