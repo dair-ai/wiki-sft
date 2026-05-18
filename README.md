@@ -1,8 +1,8 @@
 # wiki-sft
 
-Companion repo for the blog post **Automating LLM Fine-Tuning with Fireworks Pilot Agent**.
+Companion repo for the blog post **Automating the LLM Fine-Tuning Loop with Fireworks Training Agent**.
 
-It contains everything you need to reproduce the run end to end, fine-tuning Qwen3-8B on a personal AI-papers wiki using Fireworks Pilot Agent.
+It contains everything you need to reproduce the run end to end, fine-tuning Qwen3-8B on a personal AI-papers wiki using Fireworks Training Agent (previously known as Pilot Agent).
 
 ## Contents
 
@@ -16,7 +16,7 @@ It contains everything you need to reproduce the run end to end, fine-tuning Qwe
 - `fetch_abstracts.py` — fetch arXiv abstracts for each entry
 - `build_jsonl.py` — assemble the chat-format training records
 
-### Pilot Agent
+### Training Agent
 - `pilot-agent.md` — Claude Code slash command that wraps `firectl` and handles event streaming, gate detection, and resume logic
 
 ### Inference and evaluation
@@ -35,7 +35,7 @@ firectl signin
 Create a `.env` file in the project root with two keys.
 
 ```
-PI_API_KEY=<service-account key for Pilot Agent>
+PI_API_KEY=<service-account key for Training Agent>
 FIREWORKS_API_KEY=<user-level key>
 ```
 
@@ -50,7 +50,7 @@ source .env && firectl dataset create wiki-sft-2026 \
   train.jsonl \
   --api-key $FIREWORKS_API_KEY
 
-# Kick off the Pilot Agent
+# Kick off the Training Agent
 source .env && firectl session create \
   --api-key $PI_API_KEY \
   -n "Run end-to-end supervised fine-tuning on qwen3-8b using dataset accounts/<your-account>/datasets/wiki-sft-2026 and deploy the trained model to a working inference endpoint that I can call via the Fireworks chat completions API. Use validation loss for evaluation. The full flow including deployment must complete automatically."
